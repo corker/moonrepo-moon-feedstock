@@ -10,17 +10,14 @@ source:
   sha256: 62940764bdaa382b7f741c98c5e0159e78103b0fac579455293f589b91161749
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
     - {{ compiler('rust') }}
     - {{ compiler('c') }}              # [not win]
     - {{ stdlib("c") }}                # [not win]
-    - {{ compiler('m2w64_c') }}        # [win]
-    - {{ stdlib("m2w64_c") }}          # [win]
     - cargo-bundle-licenses
-    - openssl
     - make
 
 test:

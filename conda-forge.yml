@@ -2,6 +2,7 @@ bot:
   automerge: true
 build_platform:
   linux_64: linux_64
+  linux_aarch64: linux_aarch64
   osx_64: osx_64
   osx_arm64: osx_64
   win_64: win_64
@@ -14,6 +15,7 @@ github:
   tooling_branch_name: main
 provider:
   linux_64: azure
+  linux_aarch64: None
   osx_64: azure
   osx_arm64: azure
   win_64: azure
