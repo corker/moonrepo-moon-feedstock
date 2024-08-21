@@ -3,9 +3,10 @@
 # strip debug symbols
 export RUSTFLAGS="-C strip=symbols"
 
+# check licenses
 cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
 
-# build statically linked binary with Rust
+# build
 cargo install --locked --root "$PREFIX" --path crates/cli
 
 # remove extra build file
