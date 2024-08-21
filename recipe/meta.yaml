@@ -20,7 +20,7 @@ requirements:
     - {{ compiler('m2w64_c') }}        # [win]
     - {{ stdlib("m2w64_c") }}          # [win]
     - cargo-bundle-licenses
-    - openssl
+    # - openssl
     - make
 
 test:
