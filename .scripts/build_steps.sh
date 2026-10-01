@@ -36,7 +36,7 @@ mv /opt/conda/conda-meta/history /opt/conda/conda-meta/history.$(date +%Y-%m-%d-
 echo > /opt/conda/conda-meta/history
 micromamba install --root-prefix ~/.conda --prefix /opt/conda \
     --yes --override-channels --channel conda-forge --strict-channel-priority \
-    pip  python=3.14 conda-build boa conda-forge-ci-setup=4 "conda-build>=26.3"
+    pip  python=3.14 conda-build conda-forge-ci-setup=4 "conda-build>=26.3"
 export CONDA_LIBMAMBA_SOLVER_NO_CHANNELS_FROM_INSTALLED=1
 
 # set up the condarc
@@ -67,8 +67,15 @@ if [[ "${BUILD_WITH_CONDA_DEBUG:-0}" == 1 ]]; then
     #   - --output-id vs. --output-name
     #   - --clobber-file vs. none
     #   - none vs. --target-platform
-    echo "Build tool mambabuild is not currently supported in debug mode"
-    exit 1
+    CONDA_SUBDIR="${BUILD_PLATFORM}" conda debug \
+        "${RECIPE_ROOT}" \
+        -m "${CI_SUPPORT}/${CONFIG}.yaml" \
+        ${EXTRA_CB_OPTIONS:-} \
+        ${BUILD_OUTPUT_ID:+--output-id "${BUILD_OUTPUT_ID}"} \
+        --clobber-file "${CI_SUPPORT}/clobber_${CONFIG}.yaml"
+
+    # Drop into an interactive shell
+    /bin/bash
 else
     # differences between conda-build vs. rattler-build
     #   - recipe is positional vs. --recipe "${RECIPE_ROOT}"
@@ -76,7 +83,7 @@ else
     #   - --clobber-file vs. none
     #   - none vs. --target-platform
     #   - --extra-meta a=b c=d vs. --extra-meta a=b --extra-meta c=d
-    CONDA_SUBDIR="${BUILD_PLATFORM}" conda-mambabuild \
+    CONDA_SUBDIR="${BUILD_PLATFORM}" conda-build \
         "${RECIPE_ROOT}" \
         -m "${CI_SUPPORT}/${CONFIG}.yaml" \
         ${EXTRA_CB_OPTIONS:-} \
