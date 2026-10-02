@@ -2,6 +2,9 @@
 SET RUSTFLAGS=-C linker=lld -C strip=symbols
 SET CARGO_BUILD_JOBS=1
 
+:: protoc for moon_daemon_proto build script
+SET PROTOC=%BUILD_PREFIX%\Library\bin\protoc.exe
+
 :: check licenses
 cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
 
