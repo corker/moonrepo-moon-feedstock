@@ -10,6 +10,8 @@ channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
+libprotobuf:
+- 7.35.1
 macos_machine:
 - x86_64-apple-darwin14.7.2
 rust_compiler:

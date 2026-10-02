@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  name: moonrepo-moon
+  version: "2.5.6"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/moonrepo/moon/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 40468c58e99071ddeb3a1c059dc5640d7afc911e55d1eca89f7846e2315cf33f
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('rust') }}
+    - ${{ stdlib("c") }}
+    - cargo-bundle-licenses
+    - libprotobuf
+    - if: linux
+      then: make
+
+tests:
+  - script:
+      - moon --help
+
+about:
+  summary: Build system for managing codebases
+  description: |
+    A task runner and monorepo management tool for the web ecosystem, written in Rust.
+    Supports JavaScript, TypeScript, Rust, Go, Ruby, and more <https://moonrepo.dev/docs#supported-languages>
+  license: MIT
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  homepage: https://moonrepo.dev/
+  repository: https://github.com/moonrepo/moon
+  documentation: https://moonrepo.dev/docs
+
+extra:
+  recipe-maintainers:
+    - corker
