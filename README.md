@@ -16,7 +16,6 @@ Documentation: https://moonrepo.dev/docs
 A task runner and monorepo management tool for the web ecosystem, written in Rust.
 Supports JavaScript, TypeScript, Rust, Go, Ruby, and more <https://moonrepo.dev/docs#supported-languages>
 
-
 Current build status
 ====================
 
@@ -236,7 +235,4 @@ Feedstock Maintainers
 =====================
 
 * [@corker](https://github.com/corker/)
-
-
-<!-- dummy commit to enable rerendering -->
 
