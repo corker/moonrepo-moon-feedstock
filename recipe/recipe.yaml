@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: moonrepo-moon
-  version: "2.5.6"
+  version: "2.6.1"
 
 package:
   name: ${{ name|lower }}
@@ -10,10 +10,10 @@ package:
 
 source:
   url: https://github.com/moonrepo/moon/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 40468c58e99071ddeb3a1c059dc5640d7afc911e55d1eca89f7846e2315cf33f
+  sha256: f4ecd6eb69032e4ce201c6064649fa00c747012a08448e328070461ab25271cd
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
